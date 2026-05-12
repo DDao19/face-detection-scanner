@@ -1,0 +1,85 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2.5rem;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  width: 70rem;
+  max-width: 100%;
+  padding: 2rem 2.5rem;
+
+  background-color: #fff;
+  border: .1rem solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+.form-text {
+  text-align: center;
+}
+
+/* Text Input */
+.text-input {
+  flex: 1;
+
+  padding: 1rem 1.2rem;
+  color: #333;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 0.75rem;
+  outline: none;
+
+  transition: all 0.2s ease;
+}
+
+/* Placeholder */
+.text-input::placeholder {
+  color: #9ca3af;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #8707ff;
+  box-shadow: 0 0 0 3px rgba(135, 7, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* Button */
+.detect-btn {
+  padding: 1rem 1.2rem;
+
+  font-weight: 500;
+  font-size: 1.4rem;
+
+  color: #ffffff;
+  background: #4f46e5;
+
+  border: none;
+  border-radius: 0.75rem;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.detect-btn:hover {
+  background: #4338ca;
+}
+
+/* Focus */
+.detect-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}

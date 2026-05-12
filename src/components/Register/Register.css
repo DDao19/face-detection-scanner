@@ -1,0 +1,79 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+  flex: 1;
+}
+
+.register-form-container {
+  display: grid;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+
+  width: 40rem;
+  
+  background-color: #fff;
+  border: .2rem solid #e5e5e5;
+  border-radius: .75rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.register-form-title {
+  text-align: center;
+}
+.register-form-title h2 {
+  margin-bottom: 0;
+}
+
+.register-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.register-form-group {
+  display: grid;
+}
+
+.register-form-group input {
+  padding: 1rem 1.2rem;
+  width: 100%;
+
+  border: .1rem solid #e5e5e5;
+  border-radius: 0.75rem;
+  outline: none;
+
+  transition: all 0.2s ease;
+}
+
+.register-form-group input:focus {
+  outline: none;
+  border-color: #8707ff;
+  box-shadow: 0 0 0 3px rgba(135, 7, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.register-btn {
+  font-size: 1.5rem;
+  padding: 1.2rem 1.2rem;
+  margin-top: 1.5rem;
+  color: #fff;
+  
+  background-color: #4f46e5;
+  border: none;
+  border-radius: .75rem;
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.register-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+.register-sign-in p {
+  font-size: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+}

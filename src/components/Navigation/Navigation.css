@@ -1,0 +1,40 @@
+.nav-container {
+  display: flex;
+  justify-content: end;
+  
+  padding: 2rem;
+  background-color: #eee;
+
+}
+
+.logout-btn {
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+
+  border-radius: 0.75rem;
+  border: 1px solid rgba(248, 113, 113, 0.25);
+
+  background: rgba(248, 113, 113, 1);
+  color: #fff;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 1);
+  /* border-color: rgba(248, 113, 113, 0.4); */
+}
+
+/* Active */
+/* .logout-btn:active {
+  background: rgba(248, 113, 113, 0.25);
+} */
+
+/* Focus */
+.logout-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.3);
+}
