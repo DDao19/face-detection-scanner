@@ -3,9 +3,9 @@ import './Footer.css'
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <footer className='footer'>
       <p>© 2026 Face Detection Scanner — Made with ❤️ by D.Dao</p>
-    </div>
+    </footer>
   )
 }
 

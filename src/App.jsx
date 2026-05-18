@@ -24,6 +24,15 @@ const App = () => {
   const [modelIsLoaded, setModelIsLoaded] = useState(false)
   const [boxes, setBoxes] = useState([])
 
+  // useEffect(() => {
+  //   const server = async () => {
+  //     const server = await fetch('http://localhost:3000')
+  //     const response = await server.json()
+  //     console.log(response)
+  //   }
+  //   server()
+  // }, []) 
+
   const onInputChange = (event) => {
     setInput(event.target.value)
   }
