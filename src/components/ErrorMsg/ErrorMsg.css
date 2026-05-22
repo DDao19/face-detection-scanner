@@ -1,0 +1,12 @@
+.error-msg-container {
+  border-radius: .4rem;
+  background-color: #ffcccc;
+  padding: .75rem;
+  text-align: center;
+}
+
+.error-msg-container p {
+  color: #cc0000;
+  font-size: 1.4rem;
+  margin: 0;
+}

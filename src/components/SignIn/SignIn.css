@@ -72,8 +72,14 @@
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
 }
 
+.sign-in-register {
+  text-align: center;
+}
+
 .sign-in-register p {
+  display: inline-block;
   font-size: 1.5rem;
   text-align: center;
+  
   cursor: pointer;
 }

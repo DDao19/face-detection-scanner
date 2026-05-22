@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import ErrorMsg from '../ErrorMsg/ErrorMsg'
 import './SignIn.css'
 
 
-const SignIn = ({ onSignIn, onRegister }) => {
+const SignIn = ({ onRouteChange, loadUser }) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [signinError, setSigninError] = useState('')
 
   const onEmailChange = (e) => {
     setEmail(e.target.value)
@@ -24,10 +26,12 @@ const SignIn = ({ onSignIn, onRegister }) => {
     const response = await signinData.json()
     const data = await response
     
-    if (data === "Success") {
-      onSignIn()
+    if (data[0].id) {
+      loadUser(data)
+      onRouteChange('home')
     } else {
-      console.log("Wrong login")
+      setSigninError("Email or Password is incorrect. Try again")
+      console.log("Failed to login")
     }
   }
 
@@ -37,8 +41,8 @@ const SignIn = ({ onSignIn, onRegister }) => {
         <div className="sign-in-title">
           <h2>Sign In</h2>
         </div>
+        {signinError.length ? <ErrorMsg error={signinError} /> : null}
         <div className='sign-in-form'>
-
           <div className='sign-in-form-group'>
             <label htmlFor="email">Email</label>
             <input type="email" name='email' onChange={onEmailChange} />
@@ -50,11 +54,10 @@ const SignIn = ({ onSignIn, onRegister }) => {
           </div>
 
           <button className='sign-in-btn' onClick={onSubmitSignIn}>Sign In</button>
-          {/* <button className='sign-in-btn' onClick={onSignIn}>Sign In</button> */}
         </div>
 
         <div className="sign-in-register">
-          <p onClick={onRegister}>Register</p>
+          <p onClick={() => {onRouteChange('register')}}>Register</p>
         </div>
       </div>
     </main>

@@ -2,7 +2,8 @@ import React from 'react'
 import './ImageLinkForm.css'
 
 
-const ImageLinkForm = ({ onBtnSubmit, onInputChange }) => {
+const ImageLinkForm = ({ onImageSubmit, onInputChange, user }) => {
+  
   return (
     <div className="form-container">
       <div className="form-text">
@@ -15,7 +16,7 @@ const ImageLinkForm = ({ onBtnSubmit, onInputChange }) => {
           placeholder='Paste an image url'
           onChange={onInputChange} 
           />
-        <button className="detect-btn" onClick={onBtnSubmit}>Detect</button>
+        <button className="detect-btn" onClick={onImageSubmit}>Detect</button>
       </div>
 
     </div>

@@ -24,6 +24,8 @@ const App = () => {
   const [modelIsLoaded, setModelIsLoaded] = useState(false)
   const [boxes, setBoxes] = useState([])
 
+  const [user, setUser] = useState({})
+
   // useEffect(() => {
   //   const server = async () => {
   //     const server = await fetch('http://localhost:3000')
@@ -37,17 +39,8 @@ const App = () => {
     setInput(event.target.value)
   }
 
-  const onBtnSubmit = () => {
+  const onImageSubmit = () => {
     checkInputValidity()
-  }
-
-  const isValidImage = (url) => {
-    return new Promise((resolve) => {
-      const img = new Image()
-      img.onload = () => resolve(true)
-      img.onerror = () => resolve(false)
-      img.src = url
-    })
   }
 
   const checkInputValidity = async () => {
@@ -57,13 +50,31 @@ const App = () => {
       setImageUrl(input)
       setEmptyInput(false)
       setIsValidUrl(true)
-      setLoading(true)
+      
+      const imageUpload = await fetch('http://localhost:3000/image', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email: user[0].email})
+      })
+      const response = await imageUpload.json()
+      const data = await response
+      
+      setUser(data)
     } else {
       setImageUrl('')
       setEmptyInput(true)
       setIsValidUrl(false)
     }
 
+  }
+
+  const isValidImage = (url) => {
+    return new Promise((resolve) => {
+      const img = new Image()
+      img.onload = () => resolve(true)
+      img.onerror = () => resolve(false)
+      img.src = url
+    })
   }
 
   const grabImageElement = () => {
@@ -81,27 +92,19 @@ const App = () => {
     // Without it, it would size it based on the original image size
     const detectionsForSize = faceapi.resizeResults(detections, { width: element.width, height: element.height })
     setBoxes(detectionsForSize)
-    setLoading(false)
+    // setLoading(false)
   }
 
-  const onSignIn = () => {
-    setRoute('home')
+  const onRouteChange = (route) => {
+    setRoute(route)
     setInput('')
     setImageUrl('')
     setIsValidUrl(false)
     setEmptyInput(null)
   }
 
-  const onSignOut = () => {
-    setRoute('signin')
-  }
-
-  const onRegister = () => {
-    setRoute('register')
-  }
-
-  const onRegisterBack = () => {
-    setRoute('signin')
+  const loadUser = (userData) => {
+    setUser(userData)
   }
 
   // Loads the Model from face-api.js
@@ -121,19 +124,19 @@ const App = () => {
       {
         route === 'home' ? 
         <div className="app-home">
-          <Navigation onSignOut={onSignOut} />
+          <Navigation onRouteChange={onRouteChange} />
           <Logo />
-          <Rank />
-          <ImageLinkForm onBtnSubmit={onBtnSubmit} onInputChange={onInputChange} />
+          <Rank user={user} />
+          <ImageLinkForm onImageSubmit={onImageSubmit} onInputChange={onInputChange} user={user} />
           {imageUrl && isValidUrl ? <ImageDisplay imageUrl={imageUrl} grabImageElement={grabImageElement} boxes={boxes} isValidUrl={isValidUrl} /> : null}
           {emptyInput && !isValidUrl ? <DisplayError /> : null}
         </div>
         :
         (
           route === 'signin' ? 
-          <SignIn onSignIn={onSignIn} onRegister={onRegister} />
+          <SignIn onRouteChange={onRouteChange} loadUser={loadUser} />
           : 
-          <Register onSignIn={onSignIn} onRegisterBack={onRegisterBack} />
+          <Register onRouteChange={onRouteChange} loadUser={loadUser} />
         ) 
       }
       <Footer />
