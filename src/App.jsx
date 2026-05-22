@@ -120,7 +120,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <ParticlesBg type="cobweb" color="#8707ff" num={150} bg={true} />
+      <ParticlesBg type="cobweb" color="#8707ff" num={100} bg={true} />
       {
         route === 'home' ? 
         <div className="app-home">

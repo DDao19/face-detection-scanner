@@ -44,11 +44,12 @@ const Register = ({ onRouteChange, loadUser }) => {
         const response = await registerData.json()
         const data = await response
         
-        if (data.length) {
+        if (data != "Error: unable to register") {
           loadUser(data)
           onRouteChange('home')
         } else {
           console.log("Failed to register")
+          setRegisterErrorMsg("Someone with that email already exists. Please use a different email.")
         }
 
       } else {
