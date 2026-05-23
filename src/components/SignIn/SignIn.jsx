@@ -8,9 +8,15 @@ const SignIn = ({ onRouteChange, loadUser }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [signinError, setSigninError] = useState('')
+  const [emailValid, setEmailValid] = useState(true);
 
   const onEmailChange = (e) => {
-    setEmail(e.target.value)
+    const value = e.target.value
+    setEmail(value)
+
+    // Regex test returns true if valid
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    setEmailValid(regex.test(value));
   }
 
   const onPasswordChange = (e) => {
@@ -18,20 +24,31 @@ const SignIn = ({ onRouteChange, loadUser }) => {
   }
 
   const onSubmitSignIn = async () => {
-    const signinData = await fetch('http://localhost:3000/signin', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({email: email, password: password})
-    })
-    const response = await signinData.json()
-    const data = await response
-    
-    if (data[0].id) {
-      loadUser(data)
-      onRouteChange('home')
-    } else {
-      setSigninError("Email or Password is incorrect. Try again")
-      console.log("Failed to login")
+    try {
+      if (emailValid && email.length && password.length) {
+        const signinData = await fetch('http://localhost:3000/signin', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email: email, password: password})
+        })
+        const response = await signinData.json()
+        const data = await response
+        
+        if (data[0].id) {
+          loadUser(data)
+          onRouteChange('home')
+        } else {
+          setSigninError("Email or Password is incorrect. Try again")
+          console.log("Failed to login")
+        }
+      } else if (!emailValid) {
+        setSigninError("The email entered is invalid")
+      } else {
+        setSigninError("Please enter your email and password")
+      }
+
+    } catch (error) {
+      res.json(error)
     }
   }
 

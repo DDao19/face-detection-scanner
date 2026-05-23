@@ -10,6 +10,8 @@ const Register = ({ onRouteChange, loadUser }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [registerErrorMsg, setRegisterErrorMsg] = useState('')
+  const [emailValid, setEmailValid] = useState(true)
+  const [passwordValid, setPasswordValid] = useState(true)
 
   const onFnameChange = (e) => {
     setFname(e.target.value)
@@ -20,16 +22,26 @@ const Register = ({ onRouteChange, loadUser }) => {
   }
 
   const onEmailChange = (e) => {
-    setEmail(e.target.value)
+    const value = e.target.value
+    setEmail(value)
+
+    // Regex test returns true if valid
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    setEmailValid(regex.test(value));
   }
 
   const onPasswordChange = (e) => {
+    const pw = e.target.value
     setPassword(e.target.value)
+
+    // Regex test returns true if valid
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    setPasswordValid(regex.test(pw))
   }
 
   const onSubmitRegister = async () => {
     try {
-      if (fname.length && lname.length && email.length && password.length) {
+      if (fname.length && lname.length && email.length && emailValid && password.length && passwordValid) {
         const registerData = await fetch('http://localhost:3000/register', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -52,8 +64,12 @@ const Register = ({ onRouteChange, loadUser }) => {
           setRegisterErrorMsg("Someone with that email already exists. Please use a different email.")
         }
 
+      } else if (!emailValid) {
+        setRegisterErrorMsg("The email entered is invalid")
+      } else if (!passwordValid) {
+        setRegisterErrorMsg("Password must be at least 8 characters long. Includes at least one uppercase letter, one lowercase letter, one number and one special character. ")
       } else {
-        setRegisterErrorMsg("Please fill out each section")
+        setRegisterErrorMsg("Please fill out each field")
       }
 
     } catch (error) {
