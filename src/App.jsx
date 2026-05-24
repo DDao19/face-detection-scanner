@@ -26,14 +26,6 @@ const App = () => {
 
   const [user, setUser] = useState({})
 
-  // useEffect(() => {
-  //   const server = async () => {
-  //     const server = await fetch('http://localhost:3000')
-  //     const response = await server.json()
-  //     console.log(response)
-  //   }
-  //   server()
-  // }, []) 
 
   const onInputChange = (event) => {
     setInput(event.target.value)
@@ -51,7 +43,7 @@ const App = () => {
       setEmptyInput(false)
       setIsValidUrl(true)
       
-      const imageUpload = await fetch('http://localhost:3000/image', {
+      const imageUpload = await fetch('https://face-detection-scanner-api.onrender.com/image', {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: user[0].email})
@@ -128,7 +120,7 @@ const App = () => {
           <Logo />
           <Rank user={user} />
           <ImageLinkForm onImageSubmit={onImageSubmit} onInputChange={onInputChange} user={user} />
-          {imageUrl && isValidUrl ? <ImageDisplay imageUrl={imageUrl} grabImageElement={grabImageElement} boxes={boxes} isValidUrl={isValidUrl} /> : null}
+          {imageUrl && isValidUrl ? <ImageDisplay imageUrl={imageUrl} grabImageElement={grabImageElement} boxes={boxes} /> : null}
           {emptyInput && !isValidUrl ? <DisplayError /> : null}
         </div>
         :

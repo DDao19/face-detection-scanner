@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './ImageDisplay.css'
 
 
-const ImageDisplay = ({ imageUrl, grabImageElement, boxes, isValidUrl }) => {
+const ImageDisplay = ({ imageUrl, grabImageElement, boxes }) => {
  
   return (
     <div className="image-display-container">

@@ -26,7 +26,7 @@ const SignIn = ({ onRouteChange, loadUser }) => {
   const onSubmitSignIn = async () => {
     try {
       if (emailValid && email.length && password.length) {
-        const signinData = await fetch('http://localhost:3000/signin', {
+        const signinData = await fetch('https://face-detection-scanner-api.onrender.com/signin', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({email: email, password: password})

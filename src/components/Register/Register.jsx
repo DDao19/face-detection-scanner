@@ -42,7 +42,7 @@ const Register = ({ onRouteChange, loadUser }) => {
   const onSubmitRegister = async () => {
     try {
       if (fname.length && lname.length && email.length && emailValid && password.length && passwordValid) {
-        const registerData = await fetch('http://localhost:3000/register', {
+        const registerData = await fetch('https://face-detection-scanner-api.onrender.com/register', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -109,7 +109,6 @@ const Register = ({ onRouteChange, loadUser }) => {
           </div>
 
           <button className='register-btn' onClick={onSubmitRegister}>Register</button>
-          {/* <button className='register-btn' onClick={onSignIn}>Register</button> */}
         </div>
 
         <div className="register-sign-in">
