@@ -90,7 +90,7 @@ const App = () => {
       
     // detectionForSize resized the detection box coordinates
     // Without it, it would size it based on the original image size
-    const detectionsForSize = faceapi.resizeResults(detections, { width: element.width, height: element.height })
+    const detectionsForSize = await faceapi.resizeResults(detections, { width: element.width, height: element.height })
     setBoxes(detectionsForSize)
     // setLoading(false)
   }
