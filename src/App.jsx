@@ -48,8 +48,7 @@ const App = () => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: user.email})
       })
-      const response = await imageUpload.json()
-      const data = await response
+      const data = await imageUpload.json()
       
       setUser(data)
     } else {
