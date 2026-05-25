@@ -3,7 +3,6 @@ import './Rank.css'
 
 
 const Rank = ({ user }) => {
-  console.log(user)
   
   return (
     <div className="rank-container">
