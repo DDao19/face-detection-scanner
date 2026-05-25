@@ -46,7 +46,6 @@ const Register = ({ onRouteChange, loadUser }) => {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            id: '03',
             firstName: fname,
             lastName: lname,
             email: email,
@@ -55,7 +54,7 @@ const Register = ({ onRouteChange, loadUser }) => {
         })
         const response = await registerData.json()
         const data = await response
-        console.log("RESPONSE: ", response)
+        
         if (data != "Error: unable to register") {
           loadUser(data)
           onRouteChange('home')
