@@ -3,7 +3,7 @@ import './Rank.css'
 
 
 const Rank = ({ user }) => {
-  
+  console.log("RANK: ", user)
   return (
     <div className="rank-container">
       <h2>{user[0].firstname}, your current entry count is...</h2>
