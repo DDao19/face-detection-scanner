@@ -3,12 +3,12 @@ import './Rank.css'
 
 
 const Rank = ({ user }) => {
-  const firstname = user.firstname || ''
-  const entries = user.entries || 0
+  if (!user || !user.firstname) {
+    return null
+  }
 
-  const formattedName = firstname
-    ? firstname.charAt(0).toUpperCase() + firstname.slice(1)
-    : ''
+  const { firstname, entries } = user
+  const formattedName = firstname.charAt(0).toUpperCase() + firstname.slice(1)
   
   return (
     <div className="rank-container">

@@ -31,10 +31,9 @@ const SignIn = ({ onRouteChange, loadUser }) => {
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({email: email, password: password})
         })
-        const response = await signinData.json()
-        const data = await response
+        const data = await signinData.json()
         
-        if (data[0].id) {
+        if (data.id) {
           loadUser(data)
           onRouteChange('home')
         } else {

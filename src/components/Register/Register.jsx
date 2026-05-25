@@ -53,7 +53,7 @@ const Register = ({ onRouteChange, loadUser }) => {
           })
         })
         const data = await registerData.json()
-        
+       
         if (data != "Error: unable to register") {
           loadUser(data)
           onRouteChange('home')
