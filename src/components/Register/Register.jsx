@@ -52,8 +52,7 @@ const Register = ({ onRouteChange, loadUser }) => {
             password: password
           })
         })
-        const response = await registerData.json()
-        const data = await response
+        const data = await registerData.json()
         
         if (data != "Error: unable to register") {
           loadUser(data)
