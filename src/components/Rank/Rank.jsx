@@ -3,11 +3,14 @@ import './Rank.css'
 
 
 const Rank = ({ user }) => {
-  console.log("RANK: ", user)
+
+  const [{ firstname, entries }] = user
+  const formattedName = firstname.charAt(0).toUpperCase() + firstname.slice(1)
+  
   return (
     <div className="rank-container">
-      <h2>{user[0].firstname}, your current entry count is...</h2>
-      <h2 className="rank-entries">#{user[0].entries}</h2>
+      <h2>{formattedName}, your current entry count is...</h2>
+      <h2 className="rank-entries">#{entries}</h2>
     </div>
   )
 }
