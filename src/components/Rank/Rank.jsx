@@ -3,8 +3,7 @@ import './Rank.css'
 
 
 const Rank = ({ user }) => {
-
-  const [{ firstname, entries }] = user
+  const {firstname, entries} = user 
   const formattedName = firstname.charAt(0).toUpperCase() + firstname.slice(1)
   
   return (
