@@ -96,6 +96,7 @@ const App = () => {
   }
 
   const loadUser = (userData) => {
+    console.log("App Loaduser: ", userData)
     setUser(userData)
   }
 
