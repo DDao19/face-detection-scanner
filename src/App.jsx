@@ -46,7 +46,7 @@ const App = () => {
       const imageUpload = await fetch('https://face-detection-scanner-api.onrender.com/image', {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email: user[0].email})
+        body: JSON.stringify({email: user.email})
       })
       const response = await imageUpload.json()
       const data = await response
