@@ -40,6 +40,7 @@ const SignIn = ({ onRouteChange, loadUser }) => {
           loadUser(data);
           onRouteChange("home");
         } else {
+          setLoading(false);
           setSigninError("Email or Password is incorrect. Try again");
           console.log("Failed to login");
         }
