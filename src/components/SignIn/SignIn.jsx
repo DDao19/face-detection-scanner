@@ -25,6 +25,7 @@ const SignIn = ({ onRouteChange, loadUser }) => {
   const onSubmitSignIn = async () => {
     try {
       if (emailValid && email.length && password.length) {
+        setLoading(true);
         const signinData = await fetch(
           "https://face-detection-scanner-api.onrender.com/signin",
           {
@@ -36,7 +37,6 @@ const SignIn = ({ onRouteChange, loadUser }) => {
         const data = await signinData.json();
 
         if (data.id) {
-          setLoading(true);
           loadUser(data);
           onRouteChange("home");
         } else {
